@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-
 // importing files
 const routes = require('./routes');
 
