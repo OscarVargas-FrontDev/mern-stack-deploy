@@ -2,18 +2,32 @@ import React, { Component } from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 import Form from './components/Form';
 import DisplayUsers from './components/DisplayUsers';
+import axios from "axios";
 
 import './App.css';
 
 class App extends Component {
-
   state = {
-    users: []
+    users: [],
+  };
+
+  componentDidMount = () => {
+    this.fetchUsers();
   }
+
+  fetchUsers = () => {
+    axios
+      .get("/users")
+      .then((response) => {
+        const { users } = response.data;
+        this.props.setState({ users: [...this.props.state.users, ...users] });
+      })
+      .catch(() => alert("Error fetching new users"));
+  };
 
   addUser = ({ name, position, company }) => {
     this.setState({
-      users: [...this.state.users, { name, position, company }]
+      users: [...this.state.users, { name, position, company }],
     });
   };
 
@@ -37,7 +51,7 @@ class App extends Component {
             <h1>Home</h1>
           </Route>
           <Route path='/users'>
-            <DisplayUsers setState={this.setState} state={this.state} />
+            <DisplayUsers users={this.state.users} />
           </Route>
           <Route path='/about'>
             <Form addUser={this.addUser} />

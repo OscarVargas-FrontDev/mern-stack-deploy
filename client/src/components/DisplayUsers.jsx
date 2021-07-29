@@ -1,26 +1,14 @@
 import React, { Component } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 
-import axios from "axios";
-
 const { isEmpty } = require('lodash');
 
 
 
 class DisplayUser extends Component {
 
-  fetchUsers = () => {
-    axios
-      .get("/users")
-      .then((response) => {
-        const { users } = response.data;
-        this.props.setState({ users: [...this.props.state.users, ...users] });
-      })
-      .catch(() => alert("Error fetching new users"));
-  };
-
   render() {
-    const allUsers = this.props.state.users;
+    const allUsers = this.props.users;
     const users = !isEmpty(allUsers) ? allUsers : [];
 
     return (
