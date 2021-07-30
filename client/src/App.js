@@ -19,7 +19,7 @@ class App extends Component {
       .get("/users")
       .then((response) => {
         const { users } = response.data;
-        this.props.setState({ users: [...this.props.state.users, ...users] });
+        this.setState({ users: [...this.state.users, ...users] });
       })
       .catch(() => alert("Error fetching new users"));
   };
