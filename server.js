@@ -24,12 +24,7 @@ require('./database');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
-app.use(
-    cors({
-        credentials: true,
-        origin: "*",
-    }),
-);
+app.use(cors());
 // Step 3
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
