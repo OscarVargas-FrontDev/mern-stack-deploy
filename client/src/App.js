@@ -10,13 +10,26 @@ class App extends Component {
     users: [],
   };
 
+  handleClick = (e) =>{
+    e.preventDefault();
+    const id = e.target.parentNode.getAttribute("data-id");
+    console.log(id);
+    axios
+      .delete("http://localhost:8080/users", {
+        params: { id },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
   componentDidMount = () => {
     this.fetchUsers();
   }
 
   fetchUsers = () => {
     axios
-      .get("/users")
+      .get("http://localhost:8080/users")
       .then((response) => {
         const { users } = response.data;
         this.setState({ users: [...this.state.users, ...users] });
@@ -33,8 +46,8 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Form addUser={this.addUser} /> 
-        <DisplayUsers users={this.state.users} />
+        <Form addUser={this.addUser} />
+        <DisplayUsers handleClick={this.handleClick} users={this.state.users} />
       </div>
     );
   }

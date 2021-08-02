@@ -3,7 +3,7 @@ const { isEmpty } = require('lodash');
 const User = require('../models/user');
 const router = express.Router();
 
-router.post('/add', async (req, res) => {
+router.post('/add', async(req, res) => {
     if (isEmpty(req.body)) {
         return res.status(403).json({
             message: 'Body should not be empty',
@@ -35,9 +35,26 @@ router.post('/add', async (req, res) => {
         });
     }
 });
+router.delete('/users', async(req, res) => {
+    try {
+        const { id } = req.query;
+        await User.findByIdAndDelete(id, (error, data) => {
+            if (error) {
+                console.log("error in deleting!");
+                throw error;
+            } else {
+                console.log("user has been deleted", data);
+                res.status(204).json(data);
+            }
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal Server error",
+        });
+    }
+});
 
-
-router.get('/users', async (req, res) => {
+router.get('/users', async(req, res) => {
 
     try {
         const users = await User.find({});
@@ -50,7 +67,7 @@ router.get('/users', async (req, res) => {
             message: 'Internal Server error'
         });
     }
-       
+
 });
 
 module.exports = router;

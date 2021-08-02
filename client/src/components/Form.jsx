@@ -20,23 +20,23 @@ class Form extends Component {
     e.preventDefault();
     const { name, position, company } = this.state;
     axios({
-      url: '/add',
-      method: 'POST',
+      url: "http://localhost:8080/add",
+      method: "POST",
       data: {
         name,
         position,
-        company
-      }
+        company,
+      },
     })
       .then((response) => {
         this.props.addUser(response.data);
         this.setState({
-          name: '',
-          company: '',
-          position: ''
+          name: "",
+          company: "",
+          position: "",
         });
       })
-      .catch(() => alert('Failed uploading data'))
+      .catch(() => alert("Failed uploading data"));
   };
   render() {
     return (

@@ -2,11 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 // importing files
 const routes = require('./routes');
 
 // Define Global Variables
+const corsOption = {
+    origin: "*",
+};
 const app = express();
 const log = console.log;
 const PORT = process.env.PORT || 8080; // Step 1
@@ -15,6 +19,7 @@ const PORT = process.env.PORT || 8080; // Step 1
 require('./database');
 
 // Configuration
+app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@material-ui/core';
 
 const { isEmpty } = require('lodash');
-
-
 
 class DisplayUser extends Component {
 
@@ -20,10 +18,11 @@ class DisplayUser extends Component {
                 <TableCell>Name</TableCell>
                 <TableCell align='right'>Company</TableCell>
                 <TableCell align='right'>Position</TableCell>
+                <TableCell align='right'>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map(({ name, position, company }, key) => (
+              {users.map(({ _id, name, position, company }, key) => (
                 <TableRow key={key}>
                   <TableCell component='th' scope='row'>
                     {" "}
@@ -34,6 +33,15 @@ class DisplayUser extends Component {
                   </TableCell>
                   <TableCell align='right'>
                     {position ? position : "No Position Found"}
+                  </TableCell>
+                  <TableCell align='right'>
+                    <Button data-id={_id}
+                      onClick={this.props.handleClick}
+                      variant='contained'
+                      size='small'
+                      color='secondary'>
+                      x
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
