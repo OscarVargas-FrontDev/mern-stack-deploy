@@ -27,7 +27,7 @@ app.use('/', routes);
 app.use(
     cors({
         credentials: true,
-        origin: "*",
+        origin: "https://frontprueba-a96f4.web.app/",
     }),
 );
 // Step 3
