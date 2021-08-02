@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 require("dotenv").config();
-/* const cors = require('cors'); */ // Desarrollo Local
+const cors = require('cors'); // Desarrollo Local
 
 // importing files
 const routes = require('./routes');
