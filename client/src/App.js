@@ -15,7 +15,8 @@ class App extends Component {
     const id = e.target.parentNode.getAttribute("data-id");
     console.log(id);
     axios
-      .delete("http://localhost:8080/users", {
+      .delete("/users", {
+        //"http://localhost:8080/users" Desarrollo en Local
         params: { id },
       })
       .then((response) => {
@@ -29,7 +30,7 @@ class App extends Component {
 
   fetchUsers = () => {
     axios
-      .get("http://localhost:8080/users")
+      .get("/users") //"http://localhost:8080/users" Desarrollo en Local
       .then((response) => {
         const { users } = response.data;
         this.setState({ users: [...this.state.users, ...users] });

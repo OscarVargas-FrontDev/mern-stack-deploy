@@ -2,15 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require('cors');
+/* const cors = require('cors'); */ // Desarrollo Local
 
 // importing files
 const routes = require('./routes');
 
 // Define Global Variables
-const corsOption = {
+/* const corsOption = { // Desarrollo Local
     origin: "*",
-};
+}; */
 const app = express();
 const log = console.log;
 const PORT = process.env.PORT || 8080; // Step 1
@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 8080; // Step 1
 require('./database');
 
 // Configuration
-app.use(cors(corsOption));
+/* app.use(cors(corsOption)); */ // Desarrollo Local
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
