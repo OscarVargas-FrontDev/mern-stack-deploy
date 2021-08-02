@@ -15,16 +15,22 @@ const routes = require('./routes');
 const app = express();
 const log = console.log;
 const PORT = process.env.PORT || 8080; // Step 1
+const corsOption = {
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 200
+}
 
 // Step 2
 require('./database');
 
 // Configuration
 /* app.use(cors(corsOption)); */ // Desarrollo Local
+app.use(cors(corsOption));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
-app.use(cors());
 // Step 3
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
