@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const connection =
-    "mongodb+srv://safsasd:sNtLZgLyUF7jDURp@cluster0.tpq0k.mongodb.net/test?authSource=admin&replicaSet=atlas-11rjuj-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
+const connection = process.env.MONGODB_URI;
 mongoose
     .connect(connection, {
         useNewUrlParser: true,
