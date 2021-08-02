@@ -20,7 +20,7 @@ class Form extends Component {
     e.preventDefault();
     const { name, position, company } = this.state;
     axios({
-      url: "/add", //"http://localhost:8080/add" Desarrollo en Local
+      url: process.env.REACT_APP_API_URI + "/add", //"http://localhost:8080/add" Desarrollo en Local
       method: "POST",
       data: {
         name,

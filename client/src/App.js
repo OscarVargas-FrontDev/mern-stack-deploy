@@ -15,7 +15,7 @@ class App extends Component {
     const id = e.target.parentNode.getAttribute("data-id");
     console.log(id);
     axios
-      .delete("/users", {
+      .delete(process.env.REACT_APP_API_URI + "/users", {
         //"http://localhost:8080/users" Desarrollo en Local
         params: { id },
       })
@@ -30,7 +30,7 @@ class App extends Component {
 
   fetchUsers = () => {
     axios
-      .get("/users") //"http://localhost:8080/users" Desarrollo en Local
+      .get(process.env.REACT_APP_API_URI +"/users") //"http://localhost:8080/users" Desarrollo en Local
       .then((response) => {
         const { users } = response.data;
         this.setState({ users: [...this.state.users, ...users] });

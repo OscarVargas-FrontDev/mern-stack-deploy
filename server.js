@@ -23,7 +23,12 @@ require('./database');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
-
+app.use(
+    cors({
+        credentials: true,
+        origin: ["http://localhost:3000", "https://frontprueba-a96f4.web.app/"],
+    }),
+);
 // Step 3
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
