@@ -1,5 +1,7 @@
 # Deploying MERN Stack to Heroku
 
+,
+        /* "heroku-postbuild": "cd client && npm install && npm run build" */
 
 We're going to walk you how to deploy a MERN stack app to Heroku.
 
